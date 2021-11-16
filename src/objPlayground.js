@@ -48,7 +48,6 @@ const arrayGenerator = (type, object) => {
   } else if (type === 'entries') {
     newArr[i] = Object.entries(object)[i];
   }
-
   }
   return newArr;
 };
