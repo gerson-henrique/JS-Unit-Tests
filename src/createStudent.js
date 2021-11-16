@@ -17,7 +17,7 @@
 
 const createStudent = (id) => {
 let funFeed;
-let student = { name: id, feedback: funFeed = () =>   'Eita pessoa boa!'}
+let student = { name: id, feedback: funFeed = () => 'Eita pessoa boa!' };
   return student;
 };
 
