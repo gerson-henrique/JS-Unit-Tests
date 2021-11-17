@@ -44,6 +44,10 @@
   
 */
 
-const createMenu = () => {};
+  const createMenu = (arrFood) => { 
+return {
+  fetchMenu: () => arrFood,
+};
+};
 
 module.exports = createMenu;
