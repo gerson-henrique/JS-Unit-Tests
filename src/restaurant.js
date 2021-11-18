@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 
+const { TestScheduler } = require('jest');
+
 /*
   Você é responsável por escrever o código do sistema de pedidos de um restaurante. Deve ser possível, através desse sistema, 
   cadastrar um menu. Dado que um menu foi cadastrado, o sistema deve disponibilizar um objeto através do qual se consegue:
@@ -43,11 +45,44 @@
   - Uma chave `pay` que, quando chamada, invoca uma função que soma o valor de todos os pedidos e dá o preço com acréscimo de 10%.
   
 */
+ 
+  const rest = {
+    fetchMenu: 'test',
+    consumption: [],
+    order: 'test',
+    pay: 'test',
+  };
+   
+  const billType = (a, b) => {
+  let response = 0;
+    for (let i = 0; i < Object.keys(b).length; i += 1) {
+   if (b[a]) {
+    response = (b[a]);
+   } else response = 0;
+  }
+  return response;
+  };
 
+  const createConsum = (str) => {
+    rest.consumption.push(str);
+  };
   const createMenu = (arrFood) => { 
-return {
-  fetchMenu: () => arrFood,
-};
-};
+    rest.fetchMenu = () => arrFood;
 
+    rest.order = createConsum;
+
+    rest.pay = () => {
+      let bill = 0;
+      const foodPrice = arrFood.food;
+      const drinkPrice = arrFood.drink;
+      for (let i = 0; i < rest.consumption.length; i += 1) {
+      bill += billType(rest.consumption[i], foodPrice);
+      bill += billType(rest.consumption[i], drinkPrice);
+      }
+      bill += (bill * 0.1);
+      return bill; 
+      };
+      return rest;
+    };
+      
 module.exports = createMenu;
